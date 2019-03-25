@@ -1,4 +1,4 @@
-#### mysql
+#### mysql处理
 1.初始化 mysql 数据库密码（刚开始没有密码）
 ```bash
 docker exec -it mysql bash
