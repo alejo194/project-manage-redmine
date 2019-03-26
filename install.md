@@ -19,6 +19,7 @@ services:
       #- ./environment.rb:/usr/src/redmine/config/environment.rb
       #- ./config.ru:/usr/src/redmine/config.ru
       - ./passenger-nginx-config-template.erb:/passenger-nginx-config-template.erb
+      - ./plugins:/usr/src/redmine/plugins
       - redmine_data:/usr/src/redmine/files
     links:
       - db:db
