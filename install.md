@@ -12,7 +12,7 @@ services:
     environment:
       REDMINE_DB_MYSQL: db
       #REDMINE_DB_USERNAME: redmine
-      REDMINE_DB_PASSWORD: maxwin.maxwin
+      REDMINE_DB_PASSWORD: m*m*
       #RAILS_RELATIVE_URL_ROOT: "./"
     network_mode: maxwin_default
     volumes:
@@ -35,7 +35,7 @@ services:
     hostname: db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: maxwin.maxwin
+      MYSQL_ROOT_PASSWORD: m*m*
       MYSQL_DATABASE: redmine
       #MYSQL_RANDOM_ROOT_PASSWORD: 111
       LANG: C.UTF-8
