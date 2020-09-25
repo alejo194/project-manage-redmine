@@ -124,12 +124,12 @@ redmine:
       #RAILS_RELATIVE_URL_ROOT: "./"
     network_mode: maxwin_default
     volumes:
-      #- ./passenger-nginx-config-template.erb:/passenger-nginx-config-template.erb
+      - ./passenger-nginx-config-template.erb:/passenger-nginx-config-template.erb
       #- ./redmine/plugins:/usr/src/redmine/plugins
       - ./redmine/data:/usr/src/redmine/files
     links:
       - db:db
-    #command: ["passenger", "start", "--nginx-config-template", "/passenger-nginx-config-template.erb"]
+    command: ["passenger", "start", "--nginx-config-template", "/passenger-nginx-config-template.erb"]//passenger-nginx-config-template.erb同上
     logging:
       driver: "json-file"
       options:
