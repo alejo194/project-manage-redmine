@@ -158,3 +158,18 @@ redmine:
         max-size: "20m"
         max-file: "10"
 ```
+#### 资料库mysql5.7 数据导入到mysql8
+```bash
+ 导出
+ #docker exec -it db bash
+ root@db:/# mysqldump -uroot -p --all-databases > /tmp/sqlfile.sql
+ #docker cp db:/tmp/sqlfile.sql /tmp
+ 
+ 导入：
+ #docker cp /tmp/sqlfile.sql db:/tmp
+ #docker exec -it db bash
+ root@db:/# mysql -u root -p
+ > source /tmp/sqlfile.sql
+ ...
+
+```
