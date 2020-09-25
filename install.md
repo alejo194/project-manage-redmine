@@ -104,3 +104,57 @@ http {
     passenger_pre_start http://0.0.0.0:3000/;
 }
 ```
+
+
+#### 新版mysql8 redmine:4-passenger
+```bash
+vi docker-compose.yml
+redmine:
+    image: redmine:4-passenger
+    container_name: redmine
+    hostname: redmine
+    privileged: true
+    restart: always
+    ports:
+      - 30000:3000
+    environment:
+      REDMINE_DB_MYSQL: db
+      #REDMINE_DB_USERNAME: redmine
+      REDMINE_DB_PASSWORD: maxwin.maxwin
+      #RAILS_RELATIVE_URL_ROOT: "./"
+    network_mode: maxwin_default
+    volumes:
+      #- ./passenger-nginx-config-template.erb:/passenger-nginx-config-template.erb
+      #- ./redmine/plugins:/usr/src/redmine/plugins
+      - ./redmine/data:/usr/src/redmine/files
+    links:
+      - db:db
+    #command: ["passenger", "start", "--nginx-config-template", "/passenger-nginx-config-template.erb"]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "10"
+  db:
+    image: mysql:8.0
+    container_name: db
+    hostname: db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: maxwin.maxwin
+      MYSQL_DATABASE: redmine
+      LANG: C.UTF-8
+      MYSQL_CHARSET: utf-8
+    network_mode: maxwin_default
+    volumes:
+      - ./mysql/mysqld.cnf:/etc/mysql/conf.d/mysqld.cnf
+      - ./mysql/data:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "10"
+```
